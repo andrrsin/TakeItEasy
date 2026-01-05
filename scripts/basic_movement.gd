@@ -1,41 +1,25 @@
 extends CharacterBody2D
 
 
-const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+@export var SPEED = 17.0
+@export var JUMP_VELOCITY = -300.0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("move left", "move right")
+	var direction:Vector2 = Input.get_vector("move left", "move right","move up","move down")
 	
-	# CODIGO TUTO BRACKEYS
-	if direction>0:
-		animated_sprite_2d.flip_h=true
-	elif direction<0:
-		animated_sprite_2d.flip_h=false
-	if is_on_floor():
-		if direction == 0:
-			animated_sprite_2d.play("idle")
-		else:
-			animated_sprite_2d.play("run")
+	if direction != Vector2.ZERO:
+		velocity = direction * SPEED
+		if direction.x > 0:
+			animated_sprite_2d.flip_h=true
+		elif direction.x < 0:
+			animated_sprite_2d.flip_h=false
+		animated_sprite_2d.play("run")
 	else:
-		animated_sprite_2d.play("jump")
-	# FIN CODIGO BRACKEYS
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle")
+	# aplicar la velocity
 	move_and_slide()
+	

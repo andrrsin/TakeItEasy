@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bcm38p0qrpiyl" path="res://assets/sprites/Player.png" id="1_rp718"]
 [ext_resource type="Script" uid="uid://xkihqcytdim7" path="res://scripts/basic_movement.gd" id="1_yewv4"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yewv4"]
-radius = 6.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_yewv4"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76oj4"]
 atlas = ExtResource("1_rp718")
@@ -159,13 +158,16 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_yewv4")
+SPEED = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -13)
-shape = SubResource("CapsuleShape2D_yewv4")
+position = Vector2(-1, -7)
+shape = SubResource("CircleShape2D_yewv4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 25
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_eir2k")
 animation = &"jump"
