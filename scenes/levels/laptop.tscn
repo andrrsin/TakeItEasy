@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cet02x3b60i5w"]
+
+[ext_resource type="Texture2D" uid="uid://b6kydk8rwxi3t" path="res://assets/Caja.png" id="1_eqx3o"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="2_l0riy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ijq5"]
+size = Vector2(49, 49)
+
+[node name="Laptop" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.333313, 0)
+scale = Vector2(6.0555553, 6.0555553)
+texture = ExtResource("1_eqx3o")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ToMain" type="Area2D" parent="."]
+position = Vector2(-530, -285)
+script = ExtResource("2_l0riy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToMain"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_5ijq5")
+
+[connection signal="input_event" from="ToMain" to="ToMain" method="_on_input_event"]

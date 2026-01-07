@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://brqsk2t38o541"]
+
+[ext_resource type="Script" uid="uid://l3ba2nbygvks" path="res://scripts/game/gameScener.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bw2wc0ilnqgsl" path="res://scenes/main_scene.tscn" id="2_lbhrr"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("scenes", "gui")]
+script = ExtResource("1_lnu2h")
+scenes = NodePath("Scenes")
+gui = NodePath("GUI")
+
+[node name="Scenes" type="Node2D" parent="."]
+
+[node name="MainScene" parent="Scenes" instance=ExtResource("2_lbhrr")]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Prueba" type="Label" parent="GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

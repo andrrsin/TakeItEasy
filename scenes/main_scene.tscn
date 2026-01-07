@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://bw2wc0ilnqgsl"]
+
+[ext_resource type="Texture2D" uid="uid://dcjkuw4x8havt" path="res://assets/Main.png" id="1_w2twt"]
+[ext_resource type="Script" uid="uid://ddcie12ubtixh" path="res://scripts/mainSceneScener.gd" id="2_7ykc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw63i"]
+size = Vector2(194, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pu3yx"]
+size = Vector2(145, 164)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ykc4"]
+size = Vector2(151, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gubc5"]
+size = Vector2(23, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt2n2"]
+size = Vector2(23, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c16ls"]
+size = Vector2(28, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18nlu"]
+size = Vector2(29, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1pb6"]
+size = Vector2(22, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wevv"]
+size = Vector2(22.624283, 132.26947)
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.22220087, 4.529953e-06)
+scale = Vector2(6.0740747, 6.0740743)
+texture = ExtResource("1_w2twt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Interactives" type="Node2D" parent="."]
+script = ExtResource("2_7ykc4")
+
+[node name="Box" type="Area2D" parent="Interactives"]
+position = Vector2(115, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Box"]
+shape = SubResource("RectangleShape2D_pw63i")
+
+[node name="WallNote" type="Area2D" parent="Interactives"]
+position = Vector2(450, -132)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/WallNote"]
+position = Vector2(-6.5, 1)
+shape = SubResource("RectangleShape2D_pu3yx")
+
+[node name="Laptop" type="Area2D" parent="Interactives"]
+position = Vector2(-187, 165)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Laptop"]
+position = Vector2(1.5, 3)
+shape = SubResource("RectangleShape2D_7ykc4")
+
+[node name="Books" type="Node2D" parent="Interactives"]
+
+[node name="Book1" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-554, 37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book1"]
+position = Vector2(-2.5, -10)
+shape = SubResource("RectangleShape2D_gubc5")
+
+[node name="Book2" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-531, 37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book2"]
+position = Vector2(-0.5, -10)
+shape = SubResource("RectangleShape2D_rt2n2")
+
+[node name="Book3" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-503, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book3"]
+position = Vector2(-1, -11.5)
+shape = SubResource("RectangleShape2D_c16ls")
+
+[node name="Book4" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-473, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book4"]
+position = Vector2(-0.5, -8.5)
+shape = SubResource("RectangleShape2D_18nlu")
+
+[node name="Book5" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-447, 34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book5"]
+position = Vector2(1, -7)
+shape = SubResource("RectangleShape2D_c1pb6")
+
+[node name="Book6" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-380, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book6"]
+position = Vector2(2.6002197, -3.1499329)
+rotation = 0.8020159
+shape = SubResource("RectangleShape2D_6wevv")
+
+[connection signal="input_event" from="Interactives/Box" to="Interactives" method="box_click"]
+[connection signal="input_event" from="Interactives/WallNote" to="Interactives" method="wall_note_click"]
+[connection signal="input_event" from="Interactives/Laptop" to="Interactives" method="laptop_click"]
+[connection signal="input_event" from="Interactives/Books/Book1" to="Interactives" method="book1_click"]
+[connection signal="input_event" from="Interactives/Books/Book2" to="Interactives" method="book_click2"]
+[connection signal="input_event" from="Interactives/Books/Book3" to="Interactives" method="book3_click"]
+[connection signal="input_event" from="Interactives/Books/Book4" to="Interactives" method="book4_click"]
+[connection signal="input_event" from="Interactives/Books/Book5" to="Interactives" method="book5_click"]
+[connection signal="input_event" from="Interactives/Books/Book6" to="Interactives" method="book6_click"]

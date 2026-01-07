@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://co52n4cca861k"]
+
+[ext_resource type="Texture2D" uid="uid://b6kydk8rwxi3t" path="res://assets/Caja.png" id="1_p113c"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="2_2q7q8"]
+[ext_resource type="Script" uid="uid://bwuu14pgenmd6" path="res://scripts/boxLevel/locker/lockerPad.gd" id="3_wmkn3"]
+[ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_guecq"]
+[ext_resource type="PackedScene" uid="uid://5kdpfk2eq1db" path="res://scenes/assetScene/inputButton.tscn" id="5_hu3d6"]
+[ext_resource type="Script" uid="uid://cbc81mv8odrhu" path="res://scripts/boxLevel/locker/lockerEmission.gd" id="6_01mi8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_telwu"]
+size = Vector2(49, 49)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry43h"]
+font = ExtResource("4_guecq")
+font_size = 40
+
+[sub_resource type="Gradient" id="Gradient_dijgj"]
+colors = PackedColorArray(0.6074709, 0.8092093, 0.1767563, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_faous"]
+gradient = SubResource("Gradient_dijgj")
+fill = 1
+fill_from = Vector2(0.49289098, 0.45971563)
+fill_to = Vector2(0.8151659, 0.08530806)
+
+[sub_resource type="Gradient" id="Gradient_wavyb"]
+colors = PackedColorArray(1, 0.10980392, 0.09803922, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_igdtg"]
+gradient = SubResource("Gradient_wavyb")
+fill = 1
+fill_from = Vector2(0.5165877, 0.50236964)
+fill_to = Vector2(0.5450237, 0.056872036)
+
+[node name="Box" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.333313, 0)
+scale = Vector2(6.0555553, 6.0555553)
+texture = ExtResource("1_p113c")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ToMain" type="Area2D" parent="."]
+position = Vector2(-530, -285)
+script = ExtResource("2_2q7q8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToMain"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_telwu")
+
+[node name="Input" type="Node2D" parent="."]
+script = ExtResource("3_wmkn3")
+
+[node name="Label" type="Label" parent="Input"]
+offset_left = -149.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "****"
+label_settings = SubResource("LabelSettings_ry43h")
+vertical_alignment = 2
+
+[node name="Buttons" type="Node2D" parent="Input"]
+
+[node name="Button1" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(-119, 76)
+
+[node name="Button2" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(-58, 76)
+
+[node name="Button3" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(2, 76)
+
+[node name="Button4" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(63, 76)
+
+[node name="Button5" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(124, 76)
+
+[node name="Button6" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(-119, 149)
+
+[node name="Button7" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(-58, 149)
+
+[node name="Button8" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(2, 149)
+
+[node name="Button9" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(63, 149)
+
+[node name="Button0" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+position = Vector2(124, 149)
+
+[node name="Lights" type="Node2D" parent="Input" node_paths=PackedStringArray("red_light", "green_light")]
+script = ExtResource("6_01mi8")
+red_light = NodePath("RedLight")
+green_light = NodePath("GreenLight")
+
+[node name="GreenLight" type="PointLight2D" parent="Input/Lights"]
+position = Vector2(127, -10.999998)
+scale = Vector2(0.78906244, 0.671875)
+energy = 15.53
+texture = SubResource("GradientTexture2D_faous")
+
+[node name="RedLight" type="PointLight2D" parent="Input/Lights"]
+position = Vector2(77.00001, -13.000001)
+scale = Vector2(0.7343751, 0.71875)
+energy = 16.0
+texture = SubResource("GradientTexture2D_igdtg")
+
+[connection signal="input_event" from="ToMain" to="ToMain" method="_on_input_event"]

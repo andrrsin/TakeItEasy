@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0d3tam71adr7"
-path="res://.godot/imported/ArbolPlaceholder.png-c856c9a156cfa289edec00bb01cc3430.ctex"
+uid="uid://b6kydk8rwxi3t"
+path="res://.godot/imported/Caja.png-a21fa3b3ba4fcbe1782f6b5ba77cfcda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ArbolPlaceholder.png"
-dest_files=["res://.godot/imported/ArbolPlaceholder.png-c856c9a156cfa289edec00bb01cc3430.ctex"]
+source_file="res://assets/Caja.png"
+dest_files=["res://.godot/imported/Caja.png-a21fa3b3ba4fcbe1782f6b5ba77cfcda.ctex"]
 
 [params]
 
