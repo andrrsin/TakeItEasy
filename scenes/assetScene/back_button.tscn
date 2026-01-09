@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://rblo0bj7s0r4"]
+
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="1_giema"]
+[ext_resource type="Texture2D" uid="uid://geu2ex13vr7q" path="res://assets/Back.png" id="2_mbugr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fym6q"]
+size = Vector2(14, 12)
+
+[node name="BackButton" type="Area2D"]
+script = ExtResource("1_giema")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mbugr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fym6q")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

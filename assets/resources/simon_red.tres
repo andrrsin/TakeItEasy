@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://b1iwbf452trcp"]
+
+[resource]
+fill = 1
+fill_from = Vector2(0.5165877, 0.50236964)
+fill_to = Vector2(0.5450237, 0.056872036)

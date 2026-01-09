@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bw2wc0ilnqgsl"]
+[gd_scene load_steps=13 format=3 uid="uid://bw2wc0ilnqgsl"]
 
 [ext_resource type="Texture2D" uid="uid://dcjkuw4x8havt" path="res://assets/Main.png" id="1_w2twt"]
 [ext_resource type="Script" uid="uid://ddcie12ubtixh" path="res://scripts/mainSceneScener.gd" id="2_7ykc4"]
@@ -29,6 +29,9 @@ size = Vector2(22, 134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wevv"]
 size = Vector2(22.624283, 132.26947)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1cbu"]
+size = Vector2(24, 24)
 
 [node name="MainScene" type="Node2D"]
 
@@ -107,6 +110,13 @@ position = Vector2(2.6002197, -3.1499329)
 rotation = 0.8020159
 shape = SubResource("RectangleShape2D_6wevv")
 
+[node name="Hint" type="Area2D" parent="Interactives/Books"]
+position = Vector2(-395, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Hint"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_e1cbu")
+
 [connection signal="input_event" from="Interactives/Box" to="Interactives" method="box_click"]
 [connection signal="input_event" from="Interactives/WallNote" to="Interactives" method="wall_note_click"]
 [connection signal="input_event" from="Interactives/Laptop" to="Interactives" method="laptop_click"]
@@ -116,3 +126,4 @@ shape = SubResource("RectangleShape2D_6wevv")
 [connection signal="input_event" from="Interactives/Books/Book4" to="Interactives" method="book4_click"]
 [connection signal="input_event" from="Interactives/Books/Book5" to="Interactives" method="book5_click"]
 [connection signal="input_event" from="Interactives/Books/Book6" to="Interactives" method="book6_click"]
+[connection signal="input_event" from="Interactives/Books/Hint" to="Interactives" method="hint_click"]

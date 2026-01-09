@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1b6213h5qcn1"]
+
+[ext_resource type="Script" uid="uid://sujo0e2y2i7e" path="res://scripts/boxLevel/simon/simon_light.gd" id="1_ihap4"]
+[ext_resource type="Texture2D" uid="uid://bvwd867nvuhxv" path="res://assets/resources/simon_purple.tres" id="2_ihap4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tx1tt"]
+radius = 28.0
+
+[node name="SimonButton" type="Area2D"]
+script = ExtResource("1_ihap4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tx1tt")
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(-9.536743e-07, -9.536743e-07)
+scale = Vector2(0.96875, 0.9481382)
+energy = 16.0
+texture = ExtResource("2_ihap4")

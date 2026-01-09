@@ -1,36 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://co52n4cca861k"]
+[gd_scene load_steps=25 format=3 uid="uid://co52n4cca861k"]
 
 [ext_resource type="Texture2D" uid="uid://b6kydk8rwxi3t" path="res://assets/Caja.png" id="1_p113c"]
-[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="2_2q7q8"]
+[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="2_p113c"]
+[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scenes/assetScene/box_to_main.gd" id="3_hhvja"]
 [ext_resource type="Script" uid="uid://bwuu14pgenmd6" path="res://scripts/boxLevel/locker/lockerPad.gd" id="3_wmkn3"]
 [ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_guecq"]
 [ext_resource type="PackedScene" uid="uid://5kdpfk2eq1db" path="res://scenes/assetScene/inputButton.tscn" id="5_hu3d6"]
 [ext_resource type="Script" uid="uid://cbc81mv8odrhu" path="res://scripts/boxLevel/locker/lockerEmission.gd" id="6_01mi8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_telwu"]
-size = Vector2(49, 49)
+[ext_resource type="Script" uid="uid://dr2cknjlamd20" path="res://scripts/boxLevel/simon/simonManager.gd" id="7_guecq"]
+[ext_resource type="PackedScene" uid="uid://d1b6213h5qcn1" path="res://scenes/assetScene/simon_button.tscn" id="8_hu3d6"]
+[ext_resource type="FontFile" uid="uid://dcgwdxcd0wruk" path="res://assets/fonts/PixelOperator8.ttf" id="9_01mi8"]
+[ext_resource type="Texture2D" uid="uid://cu54yvfpxasxt" path="res://assets/resources/simon_blue.tres" id="9_y2rya"]
+[ext_resource type="Gradient" uid="uid://iptgvtijial5" path="res://assets/resources/simon_gradient_blue.tres" id="10_jnt0n"]
+[ext_resource type="Texture2D" uid="uid://b5ij56s3kejq1" path="res://assets/resources/simon_orange.tres" id="10_o5hq4"]
+[ext_resource type="Texture2D" uid="uid://b1iwbf452trcp" path="res://assets/resources/simon_red.tres" id="11_vpyks"]
+[ext_resource type="Texture2D" uid="uid://bvwd867nvuhxv" path="res://assets/resources/simon_purple.tres" id="12_4q3gj"]
+[ext_resource type="Gradient" uid="uid://drg4g4v2p10yr" path="res://assets/resources/simon_gradient_orange.tres" id="12_hhvja"]
+[ext_resource type="Gradient" uid="uid://do48o25qimy0g" path="res://assets/resources/simon_gradient_red.tres" id="14_eqva4"]
+[ext_resource type="Gradient" uid="uid://dplnj1tdblwww" path="res://assets/resources/simon_gradient_purple.tres" id="16_jiakp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ry43h"]
 font = ExtResource("4_guecq")
 font_size = 40
 
-[sub_resource type="Gradient" id="Gradient_dijgj"]
+[sub_resource type="Gradient" id="Gradient_guecq"]
 colors = PackedColorArray(0.6074709, 0.8092093, 0.1767563, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_faous"]
-gradient = SubResource("Gradient_dijgj")
+gradient = SubResource("Gradient_guecq")
 fill = 1
 fill_from = Vector2(0.49289098, 0.45971563)
 fill_to = Vector2(0.8151659, 0.08530806)
 
-[sub_resource type="Gradient" id="Gradient_wavyb"]
+[sub_resource type="Gradient" id="Gradient_hu3d6"]
 colors = PackedColorArray(1, 0.10980392, 0.09803922, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_igdtg"]
-gradient = SubResource("Gradient_wavyb")
+gradient = SubResource("Gradient_hu3d6")
 fill = 1
 fill_from = Vector2(0.5165877, 0.50236964)
 fill_to = Vector2(0.5450237, 0.056872036)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ddewe"]
+font = ExtResource("9_01mi8")
+font_size = 32
 
 [node name="Box" type="Node2D"]
 
@@ -41,13 +54,10 @@ texture = ExtResource("1_p113c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ToMain" type="Area2D" parent="."]
-position = Vector2(-530, -285)
-script = ExtResource("2_2q7q8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ToMain"]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_telwu")
+[node name="BackButton" parent="." instance=ExtResource("2_p113c")]
+position = Vector2(-535, -292)
+scale = Vector2(3, 3)
+script = ExtResource("3_hhvja")
 
 [node name="Input" type="Node2D" parent="."]
 script = ExtResource("3_wmkn3")
@@ -94,20 +104,59 @@ position = Vector2(63, 149)
 position = Vector2(124, 149)
 
 [node name="Lights" type="Node2D" parent="Input" node_paths=PackedStringArray("red_light", "green_light")]
+position = Vector2(103, -11)
 script = ExtResource("6_01mi8")
 red_light = NodePath("RedLight")
 green_light = NodePath("GreenLight")
 
 [node name="GreenLight" type="PointLight2D" parent="Input/Lights"]
-position = Vector2(127, -10.999998)
+position = Vector2(25, 9.536743e-07)
 scale = Vector2(0.78906244, 0.671875)
 energy = 15.53
 texture = SubResource("GradientTexture2D_faous")
 
 [node name="RedLight" type="PointLight2D" parent="Input/Lights"]
-position = Vector2(77.00001, -13.000001)
+position = Vector2(-25.999992, -2.000001)
 scale = Vector2(0.7343751, 0.71875)
 energy = 16.0
 texture = SubResource("GradientTexture2D_igdtg")
 
-[connection signal="input_event" from="ToMain" to="ToMain" method="_on_input_event"]
+[node name="SimonSays" type="Node2D" parent="." node_paths=PackedStringArray("buttons")]
+script = ExtResource("7_guecq")
+buttons = [NodePath("Buttons/Orange"), NodePath("Buttons/Purple"), NodePath("Buttons/Red"), NodePath("Buttons/Blue")]
+
+[node name="Buttons" type="Node2D" parent="SimonSays"]
+
+[node name="Blue" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+position = Vector2(-392, -61)
+gradient_resource = ExtResource("9_y2rya")
+gradient = ExtResource("10_jnt0n")
+
+[node name="Orange" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+position = Vector2(-392, -152)
+gradient_resource = ExtResource("10_o5hq4")
+gradient = ExtResource("12_hhvja")
+
+[node name="Red" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+position = Vector2(-281, -61)
+gradient_resource = ExtResource("11_vpyks")
+gradient = ExtResource("14_eqva4")
+
+[node name="Purple" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+position = Vector2(-282, -152)
+gradient_resource = ExtResource("12_4q3gj")
+gradient = ExtResource("16_jiakp")
+
+[node name="Display" type="Label" parent="SimonSays"]
+offset_left = -358.0
+offset_top = -133.0
+offset_right = -310.0
+offset_bottom = -79.0
+text = "X"
+label_settings = SubResource("LabelSettings_ddewe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="SimonSays"]
+
+[connection signal="timeout" from="SimonSays/Timer" to="SimonSays" method="game_over"]

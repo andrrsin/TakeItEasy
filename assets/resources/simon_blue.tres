@@ -1,0 +1,9 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://cu54yvfpxasxt"]
+
+[ext_resource type="Gradient" uid="uid://bvwd867nvuhxv" path="res://assets/resources/simon_purple.tres" id="1_3huai"]
+
+[resource]
+gradient = ExtResource("1_3huai")
+fill = 1
+fill_from = Vector2(0.5165877, 0.50236964)
+fill_to = Vector2(0.5450237, 0.056872036)

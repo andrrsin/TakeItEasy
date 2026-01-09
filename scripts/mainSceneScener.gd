@@ -34,3 +34,7 @@ func book5_click(_viewport:Node,event: InputEvent,_shape_idx:int) -> void:
 
 func book6_click(_viewport:Node,event: InputEvent,_shape_idx:int) -> void:
 	check_click(event, "books/book6")
+
+
+func hint_click(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	check_click(event, "books/hint")
