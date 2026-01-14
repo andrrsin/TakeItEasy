@@ -1,26 +1,464 @@
-[gd_scene load_steps=4 format=3 uid="uid://cet02x3b60i5w"]
+[gd_scene load_steps=15 format=3 uid="uid://cet02x3b60i5w"]
 
-[ext_resource type="Texture2D" uid="uid://b6kydk8rwxi3t" path="res://assets/Caja.png" id="1_eqx3o"]
-[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="2_l0riy"]
+[ext_resource type="Texture2D" uid="uid://d2ut8ag4f18un" path="res://assets/Portatil.png" id="1_jqydp"]
+[ext_resource type="Script" uid="uid://3qg30mde1tto" path="res://scripts/breakout/breakoutManager.gd" id="1_tttnq"]
+[ext_resource type="PackedScene" uid="uid://boatxscywwc1e" path="res://scenes/levels/breakout/paddle.tscn" id="2_0h7ro"]
+[ext_resource type="PackedScene" uid="uid://blp63150r5xat" path="res://scenes/levels/breakout/ball.tscn" id="3_2uwko"]
+[ext_resource type="PackedScene" uid="uid://dd3gqm7chtwa1" path="res://scenes/levels/breakout/brick.tscn" id="5_2gcig"]
+[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="6_520rv"]
+[ext_resource type="FontFile" uid="uid://dcgwdxcd0wruk" path="res://assets/fonts/PixelOperator8.ttf" id="7_520rv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ijq5"]
-size = Vector2(49, 49)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7ro"]
+size = Vector2(33, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uwko"]
+size = Vector2(639, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaooa"]
+size = Vector2(30, 347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tttnq"]
+size = Vector2(567, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lpv0q"]
+font = ExtResource("7_520rv")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_2vuu4"]
+font = ExtResource("7_520rv")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_520rv"]
+font = ExtResource("7_520rv")
+font_size = 24
 
 [node name="Laptop" type="Node2D"]
+script = ExtResource("1_tttnq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.333313, 0)
 scale = Vector2(6.0555553, 6.0555553)
-texture = ExtResource("1_eqx3o")
+texture = ExtResource("1_jqydp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ToMain" type="Area2D" parent="."]
-position = Vector2(-530, -285)
-script = ExtResource("2_l0riy")
+[node name="Paddle" parent="." instance=ExtResource("2_0h7ro")]
+position = Vector2(-2, 178)
+scale = Vector2(4.4000015, 4.4000015)
+motion_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ToMain"]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_5ijq5")
+[node name="Walls" type="Node" parent="."]
 
-[connection signal="input_event" from="ToMain" to="ToMain" method="_on_input_event"]
+[node name="Left wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-303, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left wall"]
+position = Vector2(6.5, 47)
+shape = SubResource("RectangleShape2D_0h7ro")
+
+[node name="Top wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-2, -217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top wall"]
+position = Vector2(11, 81.5)
+shape = SubResource("RectangleShape2D_2uwko")
+
+[node name="Right wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(310, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right wall"]
+position = Vector2(-5, 46.5)
+shape = SubResource("RectangleShape2D_oaooa")
+
+[node name="GameOver" type="Area2D" parent="Walls"]
+position = Vector2(0, 213)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/GameOver"]
+position = Vector2(5.5, -6)
+shape = SubResource("RectangleShape2D_tttnq")
+
+[node name="Ball" parent="." instance=ExtResource("3_2uwko")]
+position = Vector2(-2, 155)
+
+[node name="Bricks" type="Node" parent="."]
+
+[node name="Brick" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick2" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick3" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-121, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick4" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-71, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick5" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-21, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick6" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(29, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick7" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(79, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick8" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(129, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick9" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick10" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, 5)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick13" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick14" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick15" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-121, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick16" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-71, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick17" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-21, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick18" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(29, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick19" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(79, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick20" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(129, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick21" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick22" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -8)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick25" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick26" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick27" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-121, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick28" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-71, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick29" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-21, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick30" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(29, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick31" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(79, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick32" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(129, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick33" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick34" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -22)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick37" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick38" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick39" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-121, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick40" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-71, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick41" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-21, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick42" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(29, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick43" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(79, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick44" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(129, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick45" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick46" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -35)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick49" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick50" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick51" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-121, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick52" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-71, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick53" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-21, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick54" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(29, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick55" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(79, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick56" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(129, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick57" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick58" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -49)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick61" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick62" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick63" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-121, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick64" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-71, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick65" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-21, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick66" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(29, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick67" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(79, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick68" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(129, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick69" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick70" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -62)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick73" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-222, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick74" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-171, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick75" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-121, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick76" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(-71, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick77" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(-21, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick78" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(29, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick79" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(1, 0, 0.2509804, 1)
+position = Vector2(79, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick80" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(129, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick81" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(179, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="Brick82" parent="Bricks" instance=ExtResource("5_2gcig")]
+modulate = Color(0.38039216, 1, 0.5254902, 1)
+position = Vector2(229, -76)
+scale = Vector2(2.4, 2.4)
+
+[node name="BackButton" parent="." instance=ExtResource("6_520rv")]
+position = Vector2(-535, -292)
+scale = Vector2(3, 3)
+
+[node name="Lives" type="Label" parent="."]
+offset_left = -269.0
+offset_top = -191.0
+offset_right = -106.0
+offset_bottom = -151.0
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_lpv0q")
+
+[node name="Code" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -180.0
+offset_right = 289.0
+offset_bottom = -150.0
+text = "A and D to move"
+label_settings = SubResource("LabelSettings_2vuu4")
+
+[node name="SpacebarToStart" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -197.0
+offset_top = 68.0
+offset_right = 202.0
+offset_bottom = 134.0
+text = "Press SPACE to start!"
+label_settings = SubResource("LabelSettings_520rv")
+
+[connection signal="body_entered" from="Walls/GameOver" to="." method="_on_game_over_body_entered"]

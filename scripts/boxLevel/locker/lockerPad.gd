@@ -2,6 +2,9 @@ extends Node2D
 
 
 @onready var label: Label = $Label
+@onready var audio_button: AudioStreamPlayer2D = %AudioButton
+
+
 
 var current_code : Array[int] = [-1,-1,-1,-1]
 var pos : int = 0
@@ -31,7 +34,7 @@ func set_code(number:int):
 	
 	
 func animation_and_sound(_id:int):
-	pass
+	audio_button.play()
 # Signal of buttons and set_code by its number
 func button_pressed(_viewport:Node,event: InputEvent,_shape_idx:int,id:int) -> void:
 	if event is  InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:

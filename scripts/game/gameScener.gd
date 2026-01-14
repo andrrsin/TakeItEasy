@@ -21,7 +21,7 @@ func _change_scene(path:String, delete:bool = true, keep_running: bool = false, 
 	if is_gui and current_gui_scene != null:
 		if delete:
 			current_gui_scene.queue_free()
-			scene_cache.erase(path)
+			
 		elif keep_running:
 			current_gui_scene.visible = false
 		else:
@@ -30,33 +30,51 @@ func _change_scene(path:String, delete:bool = true, keep_running: bool = false, 
 	elif !is_gui and current_scene != null:
 		if delete:
 			current_scene.queue_free()
-			scene_cache.erase(path)
+			
 		elif keep_running:
 			current_scene.visible = false
 		else:
 			scenes.remove_child(current_scene)
-	# Load
-	var new_scene : Node = null	
-	# Si esta cargado lo cogemos
+	var new_scene : Node = null
 	if scene_cache.has(path):
-		new_scene = scene_cache[path]
-		# Si esta orfanado lo añadimos
-		if new_scene.get_parent() == null:
-			#Añadimos a subnodo correspondiente
-			if is_gui: gui.add_child(new_scene)
-			else: scenes.add_child(new_scene)
-		new_scene.visible = true
-		if is_gui: current_gui_scene = new_scene
-		else: current_scene = new_scene
-	else:
-		new_scene = load(path).instantiate()
-		if is_gui: gui.add_child(new_scene)
-		else: scenes.add_child(new_scene)
-		current_scene=new_scene
-		scene_cache.set(path,new_scene)
+		var cached_node = scene_cache[path]
 		
+		# VITAL FIX: Check if valid AND not currently dying
+		if is_instance_valid(cached_node) and not cached_node.is_queued_for_deletion():
+			new_scene = cached_node
+			# If it is orphaned, add it back
+			if new_scene.get_parent() == null:
+				if is_gui:
+					gui.add_child(new_scene)
+				else:
+					scenes.add_child(new_scene)
+		else:
+			# Cache had a dead or dying object. Remove it and reload.
+			scene_cache.erase(path)
+			new_scene = load(path).instantiate()
+			if is_gui:
+				gui.add_child(new_scene)
+			else:
+				scenes.add_child(new_scene)
+			scene_cache[path] = new_scene 
+			
+	else:
+		# Not in cache at all, load fresh
+		new_scene = load(path).instantiate()
+		if is_gui:
+			gui.add_child(new_scene)
+		else:
+			scenes.add_child(new_scene)
+		scene_cache[path] = new_scene
+		
+	# Final Setup
+	new_scene.visible = true
+	if is_gui:
+		current_gui_scene = new_scene
+	else:
+		current_scene = new_scene
 		
 func change_gui_scene(new_scene:String, delete:bool = true, keep_running: bool = false) -> void:
-	_change_scene(new_scene,delete,keep_running,true)
+	call_deferred("_change_scene", new_scene, delete, keep_running, true)
 func change_scene(new_scene:String, delete:bool = true, keep_running: bool = false) -> void:
-	_change_scene(new_scene,delete,keep_running)
+	call_deferred("_change_scene", new_scene, delete, keep_running, false)

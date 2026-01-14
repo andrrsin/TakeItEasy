@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cxy0l7kmg2smg" path="res://assets/Book.png" id="1_y74fp"]
 [ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_l7fvr"]
 [ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="3_aexru"]
-[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scenes/assetScene/box_to_main.gd" id="4_4dptq"]
+[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scripts/box_to_main.gd" id="4_4dptq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8lbek"]
 font = ExtResource("2_l7fvr")

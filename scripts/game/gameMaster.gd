@@ -2,4 +2,4 @@ extends Node
 
 var game_controller : GameController
 
-var code : String = "7638"
+var code : String = "3760"

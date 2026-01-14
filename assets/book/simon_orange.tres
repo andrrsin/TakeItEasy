@@ -1,6 +1,6 @@
 [gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://b5ij56s3kejq1"]
 
-[ext_resource type="Gradient" uid="uid://bvwd867nvuhxv" path="res://assets/resources/simon_purple.tres" id="1_u2bk5"]
+[ext_resource type="Gradient" uid="uid://bvwd867nvuhxv" path="res://assets/book/simon_purple.tres" id="1_u2bk5"]
 
 [resource]
 gradient = ExtResource("1_u2bk5")

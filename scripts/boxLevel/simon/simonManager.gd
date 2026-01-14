@@ -1,7 +1,7 @@
 extends Node2D
 
 # --Exports--
-@export var buttons : Array[Area2D]
+@export var buttons : Array[SimonButton]
 @export var time_in_level: float = 7.0
 @export var reward_code_number:int = 6
 # ------------
@@ -14,7 +14,7 @@ enum State {START,LEVEL1,LEVEL2,LEVEL3,LEVEL4,GAME_OVER}
 
 #--Button Related--
 var acum : int = 0
-var selected_buttons : Array[Area2D]
+var selected_buttons : Array[SimonButton]
 var is_active_input = true
 var tween : Tween
 # ---------------------
@@ -42,11 +42,12 @@ func start_level_preconditions():
 	selected_buttons.clear()
 	timer.stop()
 
-func light_flash(light:PointLight2D,time:float):
+func light_flash(button:SimonButton,time:float):
+		button.audio_stream_player_2d.play()
 		if tween: tween.kill()
 		tween = create_tween()
-		tween.tween_property(light, "energy", 14, time)
-		tween.tween_property(light, "energy", 0.0, time)
+		tween.tween_property(button.light, "energy", 14, time)
+		tween.tween_property(button.light, "energy", 0.0, time)
 		await tween.finished
 # -----------------------------------
 # ---------- STATE MACHINE -----------
@@ -66,14 +67,15 @@ func _on_button_input(event:InputEvent, id: int):
 		_:
 			handle_game_input(selected_buttons,id)
 # Handles the inputs of the buttons and decides if next level or game over
-func handle_game_input(level_order:Array[Area2D], id: int):
+func handle_game_input(level_order:Array[SimonButton], id: int):
 	# Assert de que haya lista
 	assert(!level_order.is_empty(),"NO LEVEL BUTTONS")
 	# Miramos que hayamos presionado el botón que es
+	
 	if level_order[acum] == buttons[id]:
 		print("Key",acum, " is correct")
 		# Iluminamos 
-		await light_flash(level_order[acum].get_child(1),0.1)
+		await light_flash(level_order[acum],0.1)
 		acum+=1
 		if level_order.size() <= acum:
 			load_next_level()
@@ -81,11 +83,13 @@ func handle_game_input(level_order:Array[Area2D], id: int):
 		game_over()
 
 func game_over():
+	timer.stop()
 	print("--GAME OVER--")
 	display.text="X"
 	is_active_input=false
 	await get_tree().create_timer(1).timeout
 	display.text=";)"
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
 	start_state()
 
 func reward_player():
@@ -96,6 +100,7 @@ func reward_player():
 		var light : Light2D = button.get_child(1)
 		if light: light.energy = 0
 	display.text = str(reward_code_number)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
 	print("GAME WON")
 	
 func load_next_level():
@@ -149,6 +154,8 @@ func stop_start_mode():
 	await get_tree().create_timer(1).timeout
 	display.text = "1"
 	await get_tree().create_timer(1).timeout
+	#Bajamos el volumen
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-25.0)
 	tween=create_tween()
 	# ~~~~~~~~~~~~~~~~~~
 # ----------------------------------------	
@@ -161,14 +168,14 @@ func start_level_1():
 	await get_tree().create_timer(1).timeout
 	display.text = "1"
 	
-	var button:Area2D
+	var button:SimonButton
 	
 	# select 4 buttons randomly and light them
 	for i in range(4):
 		button = buttons.pick_random()
 		self.selected_buttons.append(button)
 		print("Light",i," on")
-		await light_flash(button.get_child(1),0.4)
+		await light_flash(button,0.4)
 		print("Light",i," off")
 		
 	is_active_input = true
@@ -181,14 +188,14 @@ func start_level_2():
 	await get_tree().create_timer(1).timeout
 	display.text = "2"
 	
-	var button:Area2D
+	var button:SimonButton
 	
 	# select 5 buttons randomly and light them
 	for i in range(5):
 		button = buttons.pick_random()
 		self.selected_buttons.append(button)
 		print("Light",i," on")
-		await light_flash(button.get_child(1),0.4)
+		await light_flash(button,0.4)
 		print("Light",i," off")
 		
 	is_active_input = true
@@ -201,14 +208,14 @@ func start_level_3():
 	await get_tree().create_timer(1).timeout
 	display.text = "3"
 	
-	var button:Area2D
+	var button:SimonButton
 	
 	# select 5 buttons randomly and light them
 	for i in range(6):
 		button = buttons.pick_random()
 		self.selected_buttons.append(button)
 		print("Light",i," on")
-		await light_flash(button.get_child(1),0.4)
+		await light_flash(button,0.4)
 		print("Light",i," off")
 		
 	is_active_input = true
@@ -221,14 +228,14 @@ func start_level_4():
 	await get_tree().create_timer(1).timeout
 	display.text = "4"
 	
-	var button:Area2D
+	var button:SimonButton
 	
 	# select 7 buttons randomly and light them
 	for i in range(7):
 		button = buttons.pick_random()
 		self.selected_buttons.append(button)
 		print("Light",i," on")
-		await light_flash(button.get_child(1),0.4)
+		await light_flash(button,0.4)
 		print("Light",i," off")
 		
 	is_active_input = true
