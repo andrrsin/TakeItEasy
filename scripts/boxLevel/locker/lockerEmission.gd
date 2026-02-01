@@ -15,15 +15,13 @@ func submit_code(input_code: Array[int]):
 	# Esto une el array de ints y lo convierte en string
 	var current_code = "".join(PackedStringArray(input_code))
 	if current_code == Game.code:
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-25.0)
-		correct.play()
+		Game.sound_controller.play_important(correct)
 		flash_light(green_light)
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
+			
 	else:
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-25.0)
-		wrong.play()
+		Game.sound_controller.play_important(wrong)
 		flash_light(red_light)
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
+		
 
 
 func flash_light(light: PointLight2D):

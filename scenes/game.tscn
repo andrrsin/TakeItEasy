@@ -1,24 +1,102 @@
-[gd_scene load_steps=3 format=3 uid="uid://brqsk2t38o541"]
+[gd_scene load_steps=6 format=3 uid="uid://brqsk2t38o541"]
 
 [ext_resource type="Script" uid="uid://l3ba2nbygvks" path="res://scripts/game/gameScener.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bw2wc0ilnqgsl" path="res://scenes/main_scene.tscn" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://b23ye4oj74gkg" path="res://scripts/sound_controller.gd" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://c3wp803j83s1e" path="res://assets/breakout/Bar.png" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://cg1jofuroka5d" path="res://assets/breakout/Ball.png" id="5_p57ef"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("scenes", "gui")]
 script = ExtResource("1_lnu2h")
-scenes = NodePath("Scenes")
-gui = NodePath("GUI")
+scenes = NodePath("SoundManager/Scenes")
+gui = NodePath("SoundManager/GUI")
 
-[node name="Scenes" type="Node2D" parent="."]
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("3_lnu2h")
 
-[node name="MainScene" parent="Scenes" instance=ExtResource("2_lbhrr")]
+[node name="Scenes" type="Node2D" parent="SoundManager"]
 
-[node name="GUI" type="Control" parent="."]
+[node name="MainScene" parent="SoundManager/Scenes" instance=ExtResource("2_lbhrr")]
+
+[node name="GUI" type="Control" parent="SoundManager"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Prueba" type="Label" parent="GUI"]
+[node name="SettingsButton" type="TextureButton" parent="SoundManager/GUI"]
+layout_mode = 0
+offset_left = -480.0
+offset_top = -320.0
+offset_right = -448.0
+offset_bottom = -288.0
+texture_normal = ExtResource("4_iywne")
+texture_pressed = ExtResource("5_p57ef")
+stretch_mode = 0
+
+[node name="SettingsPanel" type="Panel" parent="SoundManager/GUI"]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 360.0
+offset_bottom = 270.0
+
+[node name="VBox" type="VBoxContainer" parent="SoundManager/GUI/SettingsPanel"]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 268.0
+offset_bottom = 198.0
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+text = "Settings"
+
+[node name="MasterLabel" type="Label" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+value = -14.0
+
+[node name="MusicLabel" type="Label" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+value = -14.0
+
+[node name="SfxLabel" type="Label" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SfxSlider" type="HSlider" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+value = -14.0
+
+[node name="ButtonRow" type="HBoxContainer" parent="SoundManager/GUI/SettingsPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CloseButton" type="Button" parent="SoundManager/GUI/SettingsPanel/VBox/ButtonRow"]
+layout_mode = 2
+text = "Close"
+
+[node name="ExitButton" type="Button" parent="SoundManager/GUI/SettingsPanel/VBox/ButtonRow"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Prueba" type="Label" parent="SoundManager/GUI"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

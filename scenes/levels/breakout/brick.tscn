@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd3gqm7chtwa1"]
+[gd_scene load_steps=5 format=3 uid="uid://dd3gqm7chtwa1"]
 
 [ext_resource type="Script" uid="uid://cwskbh0t7l40" path="res://scripts/breakout/breakoutBrick.gd" id="1_bdnwl"]
 [ext_resource type="Texture2D" uid="uid://c3wp803j83s1e" path="res://assets/breakout/Bar.png" id="2_ltnhk"]
+[ext_resource type="AudioStream" uid="uid://dvcqh2xkwhkjh" path="res://assets/music/BrickHit.mp3" id="3_ltnhk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04bv4"]
 size = Vector2(20, 5)
@@ -18,3 +19,8 @@ texture = ExtResource("2_ltnhk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_04bv4")
+
+[node name="BrickHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ltnhk")
+volume_db = -4.119
+bus = &"SFX"

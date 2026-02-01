@@ -43,12 +43,12 @@ func start_level_preconditions():
 	timer.stop()
 
 func light_flash(button:SimonButton,time:float):
-		button.audio_stream_player_2d.play()
-		if tween: tween.kill()
-		tween = create_tween()
-		tween.tween_property(button.light, "energy", 14, time)
-		tween.tween_property(button.light, "energy", 0.0, time)
-		await tween.finished
+	Game.sound_controller.play(button.audio_stream_player_2d)
+	if tween: tween.kill()
+	tween = create_tween()
+	tween.tween_property(button.light, "energy", 14, time)
+	tween.tween_property(button.light, "energy", 0.0, time)
+	await tween.finished
 # -----------------------------------
 # ---------- STATE MACHINE -----------
 # Starts the game and redirects input
@@ -89,7 +89,7 @@ func game_over():
 	is_active_input=false
 	await get_tree().create_timer(1).timeout
 	display.text=";)"
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
+	Game.sound_controller.set_volume(Game.sound_controller.music_volume_db,"Music")
 	start_state()
 
 func reward_player():
@@ -100,7 +100,7 @@ func reward_player():
 		var light : Light2D = button.get_child(1)
 		if light: light.energy = 0
 	display.text = str(reward_code_number)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-14.1)
+	Game.sound_controller.set_volume(Game.sound_controller.music_volume_db,"Music")
 	print("GAME WON")
 	
 func load_next_level():
@@ -155,7 +155,7 @@ func stop_start_mode():
 	display.text = "1"
 	await get_tree().create_timer(1).timeout
 	#Bajamos el volumen
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),-25.0)
+	Game.sound_controller.lower_music_to_hear()
 	tween=create_tween()
 	# ~~~~~~~~~~~~~~~~~~
 # ----------------------------------------	

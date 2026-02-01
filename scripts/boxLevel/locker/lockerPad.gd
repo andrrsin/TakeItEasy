@@ -34,7 +34,7 @@ func set_code(number:int):
 	
 	
 func animation_and_sound(_id:int):
-	audio_button.play()
+	Game.sound_controller.play(audio_button)
 # Signal of buttons and set_code by its number
 func button_pressed(_viewport:Node,event: InputEvent,_shape_idx:int,id:int) -> void:
 	if event is  InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
