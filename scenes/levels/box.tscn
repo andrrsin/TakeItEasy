@@ -1,10 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://co52n4cca861k"]
+[gd_scene format=3 uid="uid://co52n4cca861k"]
 
 [ext_resource type="Texture2D" uid="uid://b6kydk8rwxi3t" path="res://assets/Caja.png" id="1_p113c"]
-[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="2_p113c"]
-[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scripts/box_to_main.gd" id="3_hhvja"]
+[ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="2_n1qe6"]
+[ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="3_mbly4"]
 [ext_resource type="Script" uid="uid://bwuu14pgenmd6" path="res://scripts/boxLevel/locker/lockerPad.gd" id="3_wmkn3"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="4_1kbrc"]
 [ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_guecq"]
+[ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="4_mbly4"]
 [ext_resource type="PackedScene" uid="uid://5kdpfk2eq1db" path="res://scenes/assetScene/inputButton.tscn" id="5_hu3d6"]
 [ext_resource type="Script" uid="uid://cbc81mv8odrhu" path="res://scripts/boxLevel/locker/lockerEmission.gd" id="6_01mi8"]
 [ext_resource type="Script" uid="uid://dr2cknjlamd20" path="res://scripts/boxLevel/simon/simonManager.gd" id="7_guecq"]
@@ -52,24 +54,36 @@ fill_to = Vector2(0.5450237, 0.056872036)
 font = ExtResource("9_01mi8")
 font_size = 32
 
-[node name="Box" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_mbly4"]
+font = ExtResource("4_guecq")
+font_size = 28
+font_color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Box" type="Node2D" unique_id=316746356]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=59854133]
 position = Vector2(2.333313, 0)
 scale = Vector2(6.0555553, 6.0555553)
 texture = ExtResource("1_p113c")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1902603808]
 
-[node name="BackButton" parent="." instance=ExtResource("2_p113c")]
-position = Vector2(-535, -292)
-scale = Vector2(3, 3)
-script = ExtResource("3_hhvja")
+[node name="Back" type="TextureButton" parent="." unique_id=544310182]
+unique_name_in_owner = true
+offset_left = -504.0
+offset_top = -317.0
+offset_right = -453.0
+offset_bottom = -269.0
+texture_normal = ExtResource("2_n1qe6")
+texture_pressed = ExtResource("3_mbly4")
+texture_hover = ExtResource("4_mbly4")
+stretch_mode = 0
+script = ExtResource("4_1kbrc")
 
-[node name="Input" type="Node2D" parent="."]
+[node name="Input" type="Node2D" parent="." unique_id=1204722403]
 script = ExtResource("3_wmkn3")
 
-[node name="Label" type="Label" parent="Input"]
+[node name="Label" type="Label" parent="Input" unique_id=1499771681]
 offset_left = -149.0
 offset_top = -30.0
 offset_right = 40.0
@@ -78,101 +92,101 @@ text = "****"
 label_settings = SubResource("LabelSettings_ry43h")
 vertical_alignment = 2
 
-[node name="Buttons" type="Node2D" parent="Input"]
+[node name="Buttons" type="Node2D" parent="Input" unique_id=1485465031]
 
-[node name="Button1" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button1" parent="Input/Buttons" unique_id=1130560808 instance=ExtResource("5_hu3d6")]
 position = Vector2(-119, 76)
 
-[node name="Button2" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button2" parent="Input/Buttons" unique_id=148992041 instance=ExtResource("5_hu3d6")]
 position = Vector2(-58, 76)
 
-[node name="Button3" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button3" parent="Input/Buttons" unique_id=1054737870 instance=ExtResource("5_hu3d6")]
 position = Vector2(2, 76)
 
-[node name="Button4" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button4" parent="Input/Buttons" unique_id=1555583783 instance=ExtResource("5_hu3d6")]
 position = Vector2(63, 76)
 
-[node name="Button5" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button5" parent="Input/Buttons" unique_id=1137667614 instance=ExtResource("5_hu3d6")]
 position = Vector2(124, 76)
 
-[node name="Button6" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button6" parent="Input/Buttons" unique_id=1461395860 instance=ExtResource("5_hu3d6")]
 position = Vector2(-119, 149)
 
-[node name="Button7" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button7" parent="Input/Buttons" unique_id=1036338614 instance=ExtResource("5_hu3d6")]
 position = Vector2(-58, 149)
 
-[node name="Button8" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button8" parent="Input/Buttons" unique_id=1739790409 instance=ExtResource("5_hu3d6")]
 position = Vector2(2, 149)
 
-[node name="Button9" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button9" parent="Input/Buttons" unique_id=768258561 instance=ExtResource("5_hu3d6")]
 position = Vector2(63, 149)
 
-[node name="Button0" parent="Input/Buttons" instance=ExtResource("5_hu3d6")]
+[node name="Button0" parent="Input/Buttons" unique_id=1168351813 instance=ExtResource("5_hu3d6")]
 position = Vector2(124, 149)
 
-[node name="Lights" type="Node2D" parent="Input" node_paths=PackedStringArray("red_light", "green_light")]
+[node name="Lights" type="Node2D" parent="Input" unique_id=499900907 node_paths=PackedStringArray("red_light", "green_light")]
 position = Vector2(103, -11)
 script = ExtResource("6_01mi8")
 red_light = NodePath("RedLight")
 green_light = NodePath("GreenLight")
 
-[node name="GreenLight" type="PointLight2D" parent="Input/Lights"]
+[node name="GreenLight" type="PointLight2D" parent="Input/Lights" unique_id=185454704]
 position = Vector2(25, 9.536743e-07)
 scale = Vector2(0.78906244, 0.671875)
 energy = 15.53
 texture = SubResource("GradientTexture2D_faous")
 
-[node name="RedLight" type="PointLight2D" parent="Input/Lights"]
+[node name="RedLight" type="PointLight2D" parent="Input/Lights" unique_id=164684881]
 position = Vector2(-25.999992, -2.000001)
 scale = Vector2(0.7343751, 0.71875)
 energy = 16.0
 texture = SubResource("GradientTexture2D_igdtg")
 
-[node name="Audio" type="Node2D" parent="Input"]
+[node name="Audio" type="Node2D" parent="Input" unique_id=2086373082]
 
-[node name="AudioButton" type="AudioStreamPlayer2D" parent="Input/Audio"]
+[node name="AudioButton" type="AudioStreamPlayer2D" parent="Input/Audio" unique_id=586793277]
 unique_name_in_owner = true
 stream = ExtResource("8_mm8eq")
 
-[node name="Wrong" type="AudioStreamPlayer2D" parent="Input/Audio"]
+[node name="Wrong" type="AudioStreamPlayer2D" parent="Input/Audio" unique_id=1920877417]
 unique_name_in_owner = true
 stream = ExtResource("9_uk3mc")
 
-[node name="Correct" type="AudioStreamPlayer2D" parent="Input/Audio"]
+[node name="Correct" type="AudioStreamPlayer2D" parent="Input/Audio" unique_id=1998062200]
 unique_name_in_owner = true
 stream = ExtResource("10_n1qe6")
 
-[node name="SimonSays" type="Node2D" parent="." node_paths=PackedStringArray("buttons")]
+[node name="SimonSays" type="Node2D" parent="." unique_id=951066547 node_paths=PackedStringArray("buttons")]
 script = ExtResource("7_guecq")
 buttons = [NodePath("Buttons/Orange"), NodePath("Buttons/Purple"), NodePath("Buttons/Red"), NodePath("Buttons/Blue")]
 
-[node name="Buttons" type="Node2D" parent="SimonSays"]
+[node name="Buttons" type="Node2D" parent="SimonSays" unique_id=1396883031]
 
-[node name="Blue" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+[node name="Blue" parent="SimonSays/Buttons" unique_id=99223810 instance=ExtResource("8_hu3d6")]
 position = Vector2(-392, -61)
 gradient_resource = ExtResource("9_y2rya")
 gradient = ExtResource("10_jnt0n")
 audio = ExtResource("12_wa68i")
 
-[node name="Orange" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+[node name="Orange" parent="SimonSays/Buttons" unique_id=293997141 instance=ExtResource("8_hu3d6")]
 position = Vector2(-392, -152)
 gradient_resource = ExtResource("10_o5hq4")
 gradient = ExtResource("12_hhvja")
 audio = ExtResource("15_mm8eq")
 
-[node name="Red" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+[node name="Red" parent="SimonSays/Buttons" unique_id=2063167936 instance=ExtResource("8_hu3d6")]
 position = Vector2(-281, -61)
 gradient_resource = ExtResource("11_vpyks")
 gradient = ExtResource("14_eqva4")
 audio = ExtResource("18_nq4xs")
 
-[node name="Purple" parent="SimonSays/Buttons" instance=ExtResource("8_hu3d6")]
+[node name="Purple" parent="SimonSays/Buttons" unique_id=2082622530 instance=ExtResource("8_hu3d6")]
 position = Vector2(-282, -152)
 gradient_resource = ExtResource("12_4q3gj")
 gradient = ExtResource("16_jiakp")
 audio = ExtResource("12_eqva4")
 
-[node name="Display" type="Label" parent="SimonSays"]
+[node name="Display" type="Label" parent="SimonSays" unique_id=816219277]
 offset_left = -358.0
 offset_top = -133.0
 offset_right = -310.0
@@ -182,6 +196,18 @@ label_settings = SubResource("LabelSettings_ddewe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="SimonSays"]
+[node name="Timer" type="Timer" parent="SimonSays" unique_id=841409131]
+
+[node name="Label" type="Label" parent="." unique_id=381466547]
+offset_left = 271.99997
+offset_top = -132.0
+offset_right = 387.99997
+offset_bottom = -63.0
+rotation = -0.10148449
+scale = Vector2(1.1435539, 1.0556027)
+text = "Best
+LR"
+label_settings = SubResource("LabelSettings_mbly4")
+horizontal_alignment = 1
 
 [connection signal="timeout" from="SimonSays/Timer" to="SimonSays" method="game_over"]

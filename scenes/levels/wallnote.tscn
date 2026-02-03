@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://cccgu6g1gjju5"]
 
-[node name="Wallnote" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="1_fl7bm"]
+[ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="2_n5oxg"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="3_fxe8k"]
+[ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="3_n5oxg"]
+
+[node name="Wallnote" type="Node2D" unique_id=2006920231]
+
+[node name="Back" type="TextureButton" parent="." unique_id=831031976]
+unique_name_in_owner = true
+offset_left = -504.0
+offset_top = -317.0
+offset_right = -453.0
+offset_bottom = -269.0
+texture_normal = ExtResource("1_fl7bm")
+texture_pressed = ExtResource("2_n5oxg")
+texture_hover = ExtResource("3_n5oxg")
+stretch_mode = 0
+script = ExtResource("3_fxe8k")

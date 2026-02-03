@@ -1,7 +1,43 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw2wc0ilnqgsl"]
+[gd_scene format=3 uid="uid://bw2wc0ilnqgsl"]
 
-[ext_resource type="Texture2D" uid="uid://dcjkuw4x8havt" path="res://assets/Main.png" id="1_w2twt"]
+[ext_resource type="Texture2D" uid="uid://c4b8d17u8wi8p" path="res://assets/Main_A.png" id="1_7ykc4"]
 [ext_resource type="Script" uid="uid://ddcie12ubtixh" path="res://scripts/mainSceneScener.gd" id="2_7ykc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu3yx"]
+atlas = ExtResource("1_7ykc4")
+region = Rect2(0, 0, 192, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gubc5"]
+atlas = ExtResource("1_7ykc4")
+region = Rect2(192, 0, 192, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt2n2"]
+atlas = ExtResource("1_7ykc4")
+region = Rect2(384, 0, 192, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c16ls"]
+atlas = ExtResource("1_7ykc4")
+region = Rect2(576, 0, 192, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18nlu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu3yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gubc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt2n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c16ls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw63i"]
 size = Vector2(194, 134)
@@ -33,87 +69,89 @@ size = Vector2(22.624283, 132.26947)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1cbu"]
 size = Vector2(24, 24)
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Node2D" unique_id=1239457014]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.22220087, 4.529953e-06)
-scale = Vector2(6.0740747, 6.0740743)
-texture = ExtResource("1_w2twt")
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="." unique_id=346938650]
+position = Vector2(-0.88884735, -0.4999876)
+scale = Vector2(6.0648146, 6.0648146)
+sprite_frames = SubResource("SpriteFrames_18nlu")
+autoplay = "default"
+frame_progress = 0.0066955374
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=902872103]
 
-[node name="Interactives" type="Node2D" parent="."]
+[node name="Interactives" type="Node2D" parent="." unique_id=293160294]
 script = ExtResource("2_7ykc4")
 
-[node name="Box" type="Area2D" parent="Interactives"]
+[node name="Box" type="Area2D" parent="Interactives" unique_id=371609071]
 position = Vector2(115, 146)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Box"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Box" unique_id=1625950510]
 shape = SubResource("RectangleShape2D_pw63i")
 
-[node name="WallNote" type="Area2D" parent="Interactives"]
+[node name="WallNote" type="Area2D" parent="Interactives" unique_id=1013140434]
 position = Vector2(450, -132)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/WallNote"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/WallNote" unique_id=65565764]
 position = Vector2(-6.5, 1)
 shape = SubResource("RectangleShape2D_pu3yx")
 
-[node name="Laptop" type="Area2D" parent="Interactives"]
+[node name="Laptop" type="Area2D" parent="Interactives" unique_id=1477118509]
 position = Vector2(-187, 165)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Laptop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Laptop" unique_id=1923772417]
 position = Vector2(1.5, 3)
 shape = SubResource("RectangleShape2D_7ykc4")
 
-[node name="Books" type="Node2D" parent="Interactives"]
+[node name="Books" type="Node2D" parent="Interactives" unique_id=1428952568]
 
-[node name="Book1" type="Area2D" parent="Interactives/Books"]
+[node name="Book1" type="Area2D" parent="Interactives/Books" unique_id=2089475420]
 position = Vector2(-554, 37)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book1" unique_id=1411244518]
 position = Vector2(-2.5, -10)
 shape = SubResource("RectangleShape2D_gubc5")
 
-[node name="Book2" type="Area2D" parent="Interactives/Books"]
+[node name="Book2" type="Area2D" parent="Interactives/Books" unique_id=1348869630]
 position = Vector2(-531, 37)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book2" unique_id=2086927570]
 position = Vector2(-0.5, -10)
 shape = SubResource("RectangleShape2D_rt2n2")
 
-[node name="Book3" type="Area2D" parent="Interactives/Books"]
+[node name="Book3" type="Area2D" parent="Interactives/Books" unique_id=968749979]
 position = Vector2(-503, 39)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book3" unique_id=1956611403]
 position = Vector2(-1, -11.5)
 shape = SubResource("RectangleShape2D_c16ls")
 
-[node name="Book4" type="Area2D" parent="Interactives/Books"]
+[node name="Book4" type="Area2D" parent="Interactives/Books" unique_id=1205724465]
 position = Vector2(-473, 36)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book4" unique_id=1252787529]
 position = Vector2(-0.5, -8.5)
 shape = SubResource("RectangleShape2D_18nlu")
 
-[node name="Book5" type="Area2D" parent="Interactives/Books"]
+[node name="Book5" type="Area2D" parent="Interactives/Books" unique_id=770678985]
 position = Vector2(-447, 34)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book5" unique_id=2106844496]
 position = Vector2(1, -7)
 shape = SubResource("RectangleShape2D_c1pb6")
 
-[node name="Book6" type="Area2D" parent="Interactives/Books"]
+[node name="Book6" type="Area2D" parent="Interactives/Books" unique_id=1170422101]
 position = Vector2(-380, 39)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Book6" unique_id=1575724703]
 position = Vector2(2.6002197, -3.1499329)
 rotation = 0.8020159
 shape = SubResource("RectangleShape2D_6wevv")
 
-[node name="Hint" type="Area2D" parent="Interactives/Books"]
+[node name="Hint" type="Area2D" parent="Interactives/Books" unique_id=1609352076]
 position = Vector2(-395, -32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Hint"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/Books/Hint" unique_id=578316067]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_e1cbu")
 

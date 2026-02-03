@@ -1,24 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjlirp32cbxe6"]
+[gd_scene format=3 uid="uid://bjlirp32cbxe6"]
 
-[ext_resource type="Texture2D" uid="uid://cxy0l7kmg2smg" path="res://assets/Book.png" id="1_y74fp"]
+[ext_resource type="Texture2D" uid="uid://day78okggy74h" path="res://assets/book/Book3.png" id="1_aexru"]
 [ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_l7fvr"]
-[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="3_aexru"]
-[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scripts/box_to_main.gd" id="4_4dptq"]
+[ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="3_l7fvr"]
+[ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="4_aexru"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="5_4dptq"]
+[ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="5_aexru"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8lbek"]
 font = ExtResource("2_l7fvr")
-font_size = 24
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
-[node name="Book3" type="Node2D"]
+[node name="Book3" type="Node2D" unique_id=1778524951]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1725898890]
 position = Vector2(1.9999962, 1)
 scale = Vector2(6.097221, 6.0972223)
-texture = ExtResource("1_y74fp")
+texture = ExtResource("1_aexru")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2003082007]
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=504486893]
 offset_left = -120.0
 offset_top = -184.0
 offset_right = 164.0
@@ -29,7 +32,14 @@ label_settings = SubResource("LabelSettings_8lbek")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" parent="." instance=ExtResource("3_aexru")]
-position = Vector2(-535, -292)
-scale = Vector2(3, 3)
-script = ExtResource("4_4dptq")
+[node name="Back" type="TextureButton" parent="." unique_id=1054686853]
+unique_name_in_owner = true
+offset_left = -504.0
+offset_top = -317.0
+offset_right = -453.0
+offset_bottom = -269.0
+texture_normal = ExtResource("3_l7fvr")
+texture_pressed = ExtResource("4_aexru")
+texture_hover = ExtResource("5_aexru")
+stretch_mode = 0
+script = ExtResource("5_4dptq")

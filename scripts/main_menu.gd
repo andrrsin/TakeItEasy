@@ -23,6 +23,7 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect(func(value: float): _set_volume(value, "SFX"))
 	
 	_sync_volume_sliders()
+	_setup_custom_cursor()
 
 func _on_play_pressed() -> void:
 	# Start the game
@@ -47,3 +48,7 @@ func _sync_volume_sliders() -> void:
 		master_slider.value = Game.sound_controller.master_volume_db
 		music_slider.value = Game.sound_controller.music_volume_db
 		sfx_slider.value = Game.sound_controller.sfx_volume_db
+
+func _setup_custom_cursor() -> void:
+	var cursor_texture = load("res://assets/Cursor.png")
+	Input.set_custom_mouse_cursor(cursor_texture, Input.CURSOR_ARROW, Vector2(0, 0))

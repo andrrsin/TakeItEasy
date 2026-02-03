@@ -118,6 +118,6 @@ func _sync_volume_sliders() -> void:
 		sfx_slider.value = Game.sound_controller.sfx_volume_db
 
 func _setup_custom_cursor() -> void:
-	# var cursor_texture = load("res://assets/cursor.png")
-	# Input.set_custom_mouse_cursor(cursor_texture, Input.CURSOR_ARROW, Vector2(0, 0))
-	pass
+	var cursor_texture = load("res://assets/Cursor.png")
+	Input.set_custom_mouse_cursor(cursor_texture, Input.CURSOR_ARROW, Vector2(0, 0))
+	

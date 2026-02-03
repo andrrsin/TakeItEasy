@@ -1,8 +1,10 @@
-extends Area2D
+extends TextureButton
 
+@onready var back: TextureButton = %Back
 
+func _ready() -> void:
+	back.pressed.connect(_go_to_main)
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+func _go_to_main() -> void:
 		Game.game_controller.change_scene("res://scenes/main_scene.tscn")
 		

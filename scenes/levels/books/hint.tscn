@@ -1,30 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbd527o5lp01g"]
+[gd_scene format=3 uid="uid://dbd527o5lp01g"]
 
 [ext_resource type="Texture2D" uid="uid://dskolp8bwg3fn" path="res://assets/PostIt.png" id="1_lov23"]
-[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="2_ssabs"]
-[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scripts/box_to_main.gd" id="3_tltu6"]
+[ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="3_ssabs"]
 [ext_resource type="FontFile" uid="uid://dcgwdxcd0wruk" path="res://assets/fonts/PixelOperator8.ttf" id="4_in3rq"]
+[ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="4_tltu6"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="5_in3rq"]
+[ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="5_tltu6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_db64t"]
 font = ExtResource("4_in3rq")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
-[node name="Hint" type="Node2D"]
+[node name="Hint" type="Node2D" unique_id=159602213]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1334990100]
 position = Vector2(7.3333282, 4)
 scale = Vector2(6.0740733, 6.0740743)
 texture = ExtResource("1_lov23")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=189181763]
 
-[node name="BackButton" parent="." instance=ExtResource("2_ssabs")]
-position = Vector2(-535, -292)
-scale = Vector2(3, 3)
-script = ExtResource("3_tltu6")
-
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=361568191]
 offset_left = -269.0
 offset_top = -188.0
 offset_right = 205.0
@@ -39,3 +36,15 @@ Count the tongues where
  the Subject is not 
 always King."
 label_settings = SubResource("LabelSettings_db64t")
+
+[node name="Back" type="TextureButton" parent="." unique_id=548265343]
+unique_name_in_owner = true
+offset_left = -504.0
+offset_top = -317.0
+offset_right = -453.0
+offset_bottom = -269.0
+texture_normal = ExtResource("3_ssabs")
+texture_pressed = ExtResource("4_tltu6")
+texture_hover = ExtResource("5_tltu6")
+stretch_mode = 0
+script = ExtResource("5_in3rq")

@@ -1,24 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://j2sh1asp10fa"]
+[gd_scene format=3 uid="uid://j2sh1asp10fa"]
 
-[ext_resource type="Texture2D" uid="uid://cxy0l7kmg2smg" path="res://assets/Book.png" id="1_txo1n"]
+[ext_resource type="Texture2D" uid="uid://dj4iij7dapxp8" path="res://assets/book/Book1.png" id="1_6pyc6"]
 [ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_7d1i6"]
-[ext_resource type="PackedScene" uid="uid://rblo0bj7s0r4" path="res://scenes/assetScene/back_button.tscn" id="3_6pyc6"]
-[ext_resource type="Script" uid="uid://cnf8wysdhdv02" path="res://scripts/box_to_main.gd" id="4_h57ok"]
+[ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="3_7d1i6"]
+[ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="4_6pyc6"]
+[ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="5_6pyc6"]
+[ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="5_h57ok"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_guglc"]
 font = ExtResource("2_7d1i6")
-font_size = 24
+font_size = 32
 
-[node name="Book1" type="Node2D"]
+[node name="Book1" type="Node2D" unique_id=1306423205]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=236355217]
 position = Vector2(1.9999962, 1)
 scale = Vector2(6.097221, 6.0972223)
-texture = ExtResource("1_txo1n")
+texture = ExtResource("1_6pyc6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1336637183]
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=122933257]
 offset_left = -120.0
 offset_top = -184.0
 offset_right = 164.0
@@ -29,7 +31,14 @@ label_settings = SubResource("LabelSettings_guglc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackButton" parent="." instance=ExtResource("3_6pyc6")]
-position = Vector2(-535, -292)
-scale = Vector2(3, 3)
-script = ExtResource("4_h57ok")
+[node name="Back" type="TextureButton" parent="." unique_id=941093782]
+unique_name_in_owner = true
+offset_left = -504.0
+offset_top = -317.0
+offset_right = -453.0
+offset_bottom = -269.0
+texture_normal = ExtResource("3_7d1i6")
+texture_pressed = ExtResource("4_6pyc6")
+texture_hover = ExtResource("5_6pyc6")
+stretch_mode = 0
+script = ExtResource("5_h57ok")
