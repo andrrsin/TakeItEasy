@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://cccgu6g1gjju5"]
 
 [ext_resource type="Texture2D" uid="uid://cyi3351yl8q36" path="res://assets/gui/back_unhovered.tres" id="1_fl7bm"]
+[ext_resource type="Texture2D" uid="uid://c86jyx81r6ycj" path="res://assets/Wallnote.png" id="1_fxe8k"]
 [ext_resource type="Texture2D" uid="uid://cokkuhcjn1o3m" path="res://assets/gui/back_pressed.tres" id="2_n5oxg"]
 [ext_resource type="Script" uid="uid://bsmtxlilm1oac" path="res://scripts/to_main.gd" id="3_fxe8k"]
 [ext_resource type="Texture2D" uid="uid://cid81wvqn5iy5" path="res://assets/gui/back_hovered.tres" id="3_n5oxg"]
 
 [node name="Wallnote" type="Node2D" unique_id=2006920231]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123552413]
+position = Vector2(-5, 2)
+scale = Vector2(6.074074, 6.0740743)
+texture = ExtResource("1_fxe8k")
 
 [node name="Back" type="TextureButton" parent="." unique_id=831031976]
 unique_name_in_owner = true

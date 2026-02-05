@@ -43,7 +43,7 @@ func game_over():
 	ball.velocity = Vector2.ZERO
 	print("Game Over!")
 	ball.can_launch = false
-	lives_label.text = "Game Over!"
+	lives_label.text = "You Lose!"
 	await get_tree().create_timer(2).timeout
 	Game.game_controller.change_scene("res://scenes/levels/laptop.tscn")
 	

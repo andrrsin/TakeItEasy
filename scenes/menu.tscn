@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqm8j5y3xw7kf"]
+[gd_scene format=3 uid="uid://cqm8j5y3xw7kf"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_menu"]
-[ext_resource type="Script" path="res://scripts/sound_controller.gd" id="2_sound"]
+[ext_resource type="Script" uid="uid://dg25jm1ts0v2l" path="res://scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://b23ye4oj74gkg" path="res://scripts/sound_controller.gd" id="2_sound"]
+[ext_resource type="FontFile" uid="uid://dan7y6qflvayq" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_con2f"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_mhnvy"]
+font = ExtResource("3_con2f")
+font_size = 32
+
+[node name="MainMenu" type="Control" unique_id=1909700053]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,19 +17,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="SoundManager" type="Node" parent="."]
+[node name="SoundManager" type="Node" parent="." unique_id=2068533022]
 script = ExtResource("2_sound")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1004346635]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1, 0.1, 0.15, 1)
+color = Color(0.18527119, 0.006454894, 0.5032687, 1)
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1895116327]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -39,24 +44,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="VBox"]
+[node name="Title" type="Label" parent="VBox" unique_id=1517312272]
 layout_mode = 2
-text = "Juego Lola"
+text = "Take It Easy"
+label_settings = SubResource("LabelSettings_mhnvy")
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="VBox"]
+[node name="PlayButton" type="Button" parent="VBox" unique_id=870134074]
 layout_mode = 2
 text = "Play"
 
-[node name="SettingsButton" type="Button" parent="VBox"]
+[node name="SettingsButton" type="Button" parent="VBox" unique_id=1148430438]
 layout_mode = 2
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="VBox"]
+[node name="ExitButton" type="Button" parent="VBox" unique_id=1506311329]
 layout_mode = 2
 text = "Exit"
 
-[node name="SettingsPanel" type="Panel" parent="."]
+[node name="SettingsPanel" type="Panel" parent="." unique_id=862331253]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -71,7 +77,7 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="SettingsPanel"]
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel" unique_id=206748059]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,41 +90,41 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="SettingsPanel/VBox"]
+[node name="Title" type="Label" parent="SettingsPanel/VBox" unique_id=1373529077]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="MasterLabel" type="Label" parent="SettingsPanel/VBox"]
+[node name="MasterLabel" type="Label" parent="SettingsPanel/VBox" unique_id=1006642695]
 layout_mode = 2
 text = "Master Volume"
 
-[node name="MasterSlider" type="HSlider" parent="SettingsPanel/VBox"]
+[node name="MasterSlider" type="HSlider" parent="SettingsPanel/VBox" unique_id=1534920896]
 layout_mode = 2
 min_value = -40.0
 max_value = 0.0
 value = -14.0
 
-[node name="MusicLabel" type="Label" parent="SettingsPanel/VBox"]
+[node name="MusicLabel" type="Label" parent="SettingsPanel/VBox" unique_id=1982979354]
 layout_mode = 2
 text = "Music Volume"
 
-[node name="MusicSlider" type="HSlider" parent="SettingsPanel/VBox"]
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel/VBox" unique_id=295913739]
 layout_mode = 2
 min_value = -40.0
 max_value = 0.0
 value = -14.0
 
-[node name="SfxLabel" type="Label" parent="SettingsPanel/VBox"]
+[node name="SfxLabel" type="Label" parent="SettingsPanel/VBox" unique_id=1211674448]
 layout_mode = 2
 text = "SFX Volume"
 
-[node name="SfxSlider" type="HSlider" parent="SettingsPanel/VBox"]
+[node name="SfxSlider" type="HSlider" parent="SettingsPanel/VBox" unique_id=625005951]
 layout_mode = 2
 min_value = -40.0
 max_value = 0.0
 value = -14.0
 
-[node name="CloseButton" type="Button" parent="SettingsPanel/VBox"]
+[node name="CloseButton" type="Button" parent="SettingsPanel/VBox" unique_id=772978169]
 layout_mode = 2
 text = "Close"

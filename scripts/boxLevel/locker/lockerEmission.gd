@@ -17,7 +17,8 @@ func submit_code(input_code: Array[int]):
 	if current_code == Game.code:
 		Game.sound_controller.play_important(correct)
 		flash_light(green_light)
-			
+		await get_tree().create_timer(1).timeout
+		Game.game_controller.change_scene("res://scenes/end_scene.tscn")	
 	else:
 		Game.sound_controller.play_important(wrong)
 		flash_light(red_light)

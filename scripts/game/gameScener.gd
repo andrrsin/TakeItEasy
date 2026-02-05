@@ -19,7 +19,7 @@ var current_gui_scene
 
 func _ready() -> void:
 	Game.game_controller = self
-	current_gui_scene = $SoundManager/GUI/Prueba
+	
 	current_scene = $SoundManager/Scenes/MainScene
 	scene_cache.set("res://scenes/main_scene.tscn",current_scene)
 	settings_panel.visible = false

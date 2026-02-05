@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8gd8e4ore6f5"]
+
+[ext_resource type="Texture2D" uid="uid://caqf3a58frdhv" path="res://assets/End.png" id="1_s7dif"]
+[ext_resource type="Texture2D" uid="uid://ovcday3ck03m" path="res://assets/Playlist.png" id="2_85q8e"]
+
+[node name="EndScene" type="Node2D" unique_id=119485611]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=884259660]
+position = Vector2(2.111084, 0)
+scale = Vector2(6.074074, 6.0740743)
+texture = ExtResource("1_s7dif")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=815387854]
+
+[node name="Playlist" type="Sprite2D" parent="." unique_id=613825677]
+position = Vector2(121.000015, 92)
+scale = Vector2(1.515625, 1.515625)
+texture = ExtResource("2_85q8e")
